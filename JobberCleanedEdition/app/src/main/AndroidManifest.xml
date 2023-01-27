@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.badfish.jobber">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo"
+        android:label="Jobber"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JobberCleanedEdition"
+        tools:targetApi="31"
+        >
+
+        <activity
+            android:name="com.badfish.jobber.Activities.ChatActivity"
+            android:screenOrientation="portrait"
+
+            android:windowSoftInputMode="adjustResize"
+
+            android:exported="false" />
+        <activity
+            android:name="com.badfish.jobber.Activities.FeedBackActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:label="@string/title_activity_feed_back"
+            android:theme="@style/Theme.JobberCleanedEdition.NoActionBar" />
+        <activity
+            android:name="com.badfish.jobber.Activities.ApplyForEmployer.ApplyForEmployerActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:label="@string/title_activity_apply_for_employer"
+            android:theme="@style/Theme.JobberCleanedEdition.NoActionBar" />
+        <activity
+            android:name="com.badfish.jobber.Activities.ApplyForWorkerActivity.ApplyForWorkerActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name="com.badfish.jobber.Activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.badfish.jobber.Activities.LoginActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name="com.badfish.jobber.Activities.ApplyForWorkerActivity.MapsActivity"
+            android:screenOrientation="fullSensor"
+            android:exported="false" />
+        <activity
+            android:name="com.badfish.jobber.Activities.LaunchActivity"
+            android:screenOrientation="portrait"
+
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDJUBuQEIWWO_idx29luk_f7TAl0im317c" />
+
+        <service
+            android:name="com.badfish.jobber.Services.FirebaseMessagingService"
+            android:exported="true"
+            android:permission="TODO">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
