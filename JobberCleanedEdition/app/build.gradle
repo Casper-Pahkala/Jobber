@@ -10,14 +10,18 @@ android {
         applicationId "com.badfish.jobber"
         minSdk 28
         targetSdk 32
-        versionCode 15
+        versionCode 16
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         Properties properties = new Properties()
         properties.load(project.rootProject.file('configurations.properties').newDataInputStream())
 
-        resValue "string" ,"MAPS_API_KEY", "${properties.MAPS_API_KEY}"
-        resValue "string" ,"SERVER_KEY", "${properties.SERVER_KEY}"
+        def addConstant = {constantName, constantValue ->
+            manifestPlaceholders += [ (constantName):constantValue]
+            buildConfigField "String", "${constantName}", "\"${constantValue}\""
+        }
+        addConstant("MAPS_API_KEY", "${properties.MAPS_API_KEY}")
+        addConstant("SERVER_KEY", "${properties.SERVER_KEY}")
 
     }
 

@@ -45,7 +45,7 @@ public class FcmNotificationsSender  {
 
     private RequestQueue requestQueue;
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String fcmServerKey = mContext.getResources().getString(com.badfish.jobber.R.string.SERVER_KEY);
+    private final String fcmServerKey = BuildConfig.SERVER_KEY;
 
     public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {
         this.userFcmToken = userFcmToken;
