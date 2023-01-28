@@ -18,8 +18,7 @@ android {
             manifestPlaceholders += [ (constantName):constantValue]
             buildConfigField "String", "${constantName}", "\"${constantValue}\""
         }
-        addConstant("MAPS_API_KEY", "AIzaSyDJUBuQEIWWO_idx29luk_f7TAl0im317c")
-        addConstant("API_KEY", "AIzaSyCD2cO0SSWp6HOUzb6KQNLrDwUSNXMV8Is")
+
     }
 
     buildTypes {
