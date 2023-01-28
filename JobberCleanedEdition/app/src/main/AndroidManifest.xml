@@ -75,7 +75,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDJUBuQEIWWO_idx29luk_f7TAl0im317c" />
+            android:value="${MAPS_API_KEY}" />
 
         <service
             android:name="com.badfish.jobber.Services.FirebaseMessagingService"

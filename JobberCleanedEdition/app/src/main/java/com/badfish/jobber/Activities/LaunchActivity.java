@@ -68,12 +68,6 @@ public class LaunchActivity extends AppCompatActivity {
         boolean hasLoggedIn = sharedPreferences.getBoolean("hasLoggedIn", false);
         mFunctions = FirebaseFunctions.getInstance();
 
-
-
-
-
-
-
         FirebaseDatabase.getInstance().getReference("update").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -97,6 +91,12 @@ public class LaunchActivity extends AppCompatActivity {
                                         User userProfile = snapshot.getValue(User.class);
                                         if(userProfile != null){
                                             String locked = userProfile.getLocked();
+                                            Boolean deleted = snapshot.child("deleted").exists();
+                                            if(deleted){
+                                                Toast.makeText(LaunchActivity.this, "Current account has been removed", Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
+                                                return;
+                                            }
                                             if(locked.equals("false")) {
                                                 startActivity(new Intent(LaunchActivity.this, MainActivity.class));
                                                 finishAffinity();
@@ -168,24 +168,4 @@ public class LaunchActivity extends AppCompatActivity {
 
     }
 
-    private Task<String> addMessage(String text) {
-        // Create the arguments to the callable function.
-        Map<String, Object> data = new HashMap<>();
-        data.put("text", text);
-        data.put("push", true);
-
-        return mFunctions
-                .getHttpsCallable("helloWorld")
-                .call(data)
-                .continueWith(new Continuation<HttpsCallableResult, String>() {
-                    @Override
-                    public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                        // This continuation runs on either success or failure, but if the task
-                        // has failed then getResult() will throw an Exception which will be
-                        // propagated down.
-                        String result = (String) task.getResult().getData();
-                        return result;
-                    }
-                });
-    }
 }

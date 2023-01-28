@@ -21,7 +21,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCD2cO0SSWp6HOUzb6KQNLrDwUSNXMV8Is"
+          "current_key": "${API_KEY}"
         }
       ],
       "services": {
@@ -58,7 +58,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCD2cO0SSWp6HOUzb6KQNLrDwUSNXMV8Is"
+          "current_key": "${API_KEY}"
         }
       ],
       "services": {
