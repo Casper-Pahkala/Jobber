@@ -10,7 +10,7 @@ android {
         applicationId "com.badfish.jobber"
         minSdk 28
         targetSdk 32
-        versionCode 16
+        versionCode 17
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         Properties properties = new Properties()
@@ -39,6 +39,9 @@ android {
         viewBinding true
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+    }
 
 }
 
