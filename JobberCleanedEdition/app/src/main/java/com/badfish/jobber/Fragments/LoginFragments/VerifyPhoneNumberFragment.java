@@ -149,7 +149,7 @@ public class VerifyPhoneNumberFragment extends Fragment {
                                     } else if (e instanceof FirebaseTooManyRequestsException) {
                                         Toast.makeText(getActivity(), "Too many requests", Toast.LENGTH_SHORT).show();
                                     }else{
-                                        Toast.makeText(getContext(), "Unknown error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
 
                                     // Show a message and update the UI
