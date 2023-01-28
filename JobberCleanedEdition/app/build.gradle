@@ -8,16 +8,19 @@ android {
 
     defaultConfig {
         applicationId "com.badfish.jobber"
-        minSdk 28
+        minSdk 22
         targetSdk 32
-        versionCode 10
+        versionCode 13
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        def configs = new Properties()
+        configs.load(new FileInputStream(rootProject.file("local.properties")))
         def addConstant = {constantName, constantValue ->
             manifestPlaceholders += [ (constantName):constantValue]
             buildConfigField "String", "${constantName}", "\"${constantValue}\""
         }
+        addConstant("MAPS_API_KEY", "${configs.MAPS_API_KEY}")
+        addConstant("SERVER_KEY", "${configs.SERVER_KEY}")
 
     }
 

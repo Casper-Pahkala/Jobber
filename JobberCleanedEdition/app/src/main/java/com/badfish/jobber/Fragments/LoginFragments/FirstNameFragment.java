@@ -74,24 +74,6 @@ public class FirstNameFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mFunctions = FirebaseFunctions.getInstance();
-        addMessage("inputMessage")
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Exception e = task.getException();
-                            if (e instanceof FirebaseFunctionsException) {
-                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
-                                FirebaseFunctionsException.Code code = ffe.getCode();
-                                Object details = ffe.getDetails();
-                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }else{
-                                Toast.makeText(getContext(), task.getResult(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
         FirebaseApp.initializeApp(getContext());
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();

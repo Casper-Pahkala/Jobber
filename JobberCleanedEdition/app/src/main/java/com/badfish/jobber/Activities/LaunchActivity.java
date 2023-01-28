@@ -67,13 +67,15 @@ public class LaunchActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefsFile", 0);
         boolean hasLoggedIn = sharedPreferences.getBoolean("hasLoggedIn", false);
         mFunctions = FirebaseFunctions.getInstance();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("update");
 
-        FirebaseDatabase.getInstance().getReference("update").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        db.getReference().child("update").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 if(snapshot.exists()){
-                   UpdateModel model = snapshot.getValue(UpdateModel.class);
+                    UpdateModel model = snapshot.getValue(UpdateModel.class);
                     PackageInfo pInfo = null;
                     try {
                         pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);

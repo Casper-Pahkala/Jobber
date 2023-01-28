@@ -42,6 +42,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -93,8 +94,13 @@ public class VerifyPhoneNumberFragment extends Fragment {
             public void run() {
                 if(!codeSent){
                     Toast.makeText(getActivity(), "Code sending failed", Toast.LENGTH_SHORT).show();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right).replace(R.id.frameLayout, new PhoneNumberFragment()).commit();
+                    try{
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right).replace(R.id.frameLayout, new PhoneNumberFragment()).commit();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         }, 10000);
@@ -138,10 +144,12 @@ public class VerifyPhoneNumberFragment extends Fragment {
                                     Log.w(TAG, "onVerificationFailed", e);
 
                                     if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                                        Toast.makeText(getActivity(), "Error1", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Invalid credentials", Toast.LENGTH_SHORT).show();
 
                                     } else if (e instanceof FirebaseTooManyRequestsException) {
-                                        Toast.makeText(getActivity(), "Error2", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Too many requests", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(getContext(), "Unknown error", Toast.LENGTH_SHORT).show();
                                     }
 
                                     // Show a message and update the UI
@@ -154,6 +162,7 @@ public class VerifyPhoneNumberFragment extends Fragment {
                                     // now need to ask the user to enter the code and then construct a credential
                                     // by combining the code with a verification ID.
                                     Log.d(TAG, "onCodeSent:" + verificationId);
+                                    Toast.makeText(getContext(), "Code sent", Toast.LENGTH_SHORT).show();
                                     // Save verification ID and resending token so we can use them later
                                     verificationID = verificationId;
                                     mainLayout.setVisibility(View.VISIBLE);
@@ -519,10 +528,10 @@ public class VerifyPhoneNumberFragment extends Fragment {
                         Log.w(TAG, "onVerificationFailed", e);
 
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(getActivity(), "Error1", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Invalid credentials", Toast.LENGTH_SHORT).show();
 
                         } else if (e instanceof FirebaseTooManyRequestsException) {
-                            Toast.makeText(getActivity(), "Error2", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Too many requests", Toast.LENGTH_SHORT).show();
                         }
 
                         // Show a message and update the UI
@@ -561,15 +570,12 @@ public class VerifyPhoneNumberFragment extends Fragment {
                             FirebaseUser user = task.getResult().getUser();
                             String name = sharedPreferences.getString("firstName","");
                             String lastName = sharedPreferences.getString("lastName","");
-                            Toast.makeText(getActivity(), "User created", Toast.LENGTH_SHORT).show();
-
                             User model = new User(name,lastName,"","false",user.getUid(),tokenId,"","noProfilePicture");
                             FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     sharedPreferences.edit().putString("codeSent", "false").commit();
                                     sharedPreferences.edit().putBoolean("hasLoggedIn", true).commit();
-                                    Toast.makeText(getActivity(), "User created in firebase", Toast.LENGTH_SHORT).show();
                                     getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_left_to_right,R.anim.exit_right_to_left).replace(R.id.frameLayout, new ChooseRoleFragment()).commit();
                                 }
                             });
