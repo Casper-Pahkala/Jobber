@@ -60,7 +60,7 @@ public class VerifyPhoneNumberFragment extends Fragment {
     ProgressBar progressBar;
     PhoneAuthProvider.ForceResendingToken tokenn;
     boolean codeSent=false;
-
+    boolean pressedBack=false;
     public VerifyPhoneNumberFragment() {
         // Required empty public constructor
     }
@@ -84,6 +84,7 @@ public class VerifyPhoneNumberFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pressedBack=false;
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
         phoneNumber = sharedPreferences.getString("phoneNumber","");
         progressBar=getView().findViewById(R.id.progressBar);
@@ -94,9 +95,11 @@ public class VerifyPhoneNumberFragment extends Fragment {
             public void run() {
                 if(!codeSent){
                     Toast.makeText(getActivity(), "Code sending failed", Toast.LENGTH_SHORT).show();
-                    try{
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right).replace(R.id.frameLayout, new PhoneNumberFragment()).commit();
+                    try {
+                        if (!pressedBack) {
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right).replace(R.id.frameLayout, new PhoneNumberFragment()).commit();
+                        }
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -607,6 +610,7 @@ public class VerifyPhoneNumberFragment extends Fragment {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_UP && i == KeyEvent.KEYCODE_BACK){
+                    pressedBack=true;
                     getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right).replace(R.id.frameLayout, new PhoneNumberFragment()).commit();
                     return true;
                 }
