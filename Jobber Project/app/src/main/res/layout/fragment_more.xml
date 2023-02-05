@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:colorPrimary"
+    tools:context=".Fragments.MainFragments.WorkerFragments.WorkerMoreFragment">
+
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="6dp"
+        android:src="@drawable/ic_baseline_close_24"
+        app:tint="?android:textColorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/changeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorPrimary"
+            android:text="Change to employer"
+            android:fontFamily="@font/alata"
+            android:textSize="22sp"
+            android:paddingBottom="3dp"
+            android:paddingStart="40dp"
+            android:paddingVertical="15dp"
+            />
+        <TextView
+            android:id="@+id/yourApplicationsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorPrimary"
+            android:text="Your applications"
+            android:fontFamily="@font/alata"
+            android:textSize="20sp"
+            android:paddingStart="40dp"
+            android:paddingVertical="15dp"
+            />
+
+        <TextView
+            android:id="@+id/applicationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorPrimary"
+            android:text="Enter an application"
+            android:fontFamily="@font/alata"
+            android:textSize="20sp"
+            android:paddingStart="40dp"
+            android:paddingVertical="15dp"
+            />
+        <TextView
+            android:id="@+id/acceptedJobs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorPrimary"
+            android:text="Accepted jobs"
+            android:visibility="gone"
+            android:fontFamily="@font/alata"
+            android:textSize="20sp"
+            android:paddingStart="40dp"
+            android:paddingVertical="15dp"
+            />
+
+
+        <TextView
+            android:id="@+id/giveFeedbackButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorPrimary"
+            android:text="Give feedback"
+            android:fontFamily="@font/alata"
+            android:textSize="20sp"
+            android:paddingStart="40dp"
+
+            android:padding="15dp"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

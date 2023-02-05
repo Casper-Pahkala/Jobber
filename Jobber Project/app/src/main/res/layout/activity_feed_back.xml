@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.FeedBackActivity"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+    />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/alata"
+        android:paddingStart="20dp"
+        android:text="Feedback"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etLayout"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:imeOptions="actionDone"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/feedBackText"
+            android:layout_width="match_parent"
+            android:gravity="top"
+            android:textColor="@color/white"
+            android:layout_height="match_parent"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:inputType="textMultiLine"
+            android:imeOptions="actionDone"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/sendButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/etLayout"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/borders6"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Send feedback"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

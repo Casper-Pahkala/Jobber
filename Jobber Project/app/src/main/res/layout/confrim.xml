@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/borders"
+    android:layout_marginHorizontal="30dp"
+    app:cardCornerRadius="12sp"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/alata"
+            android:text="Delete "
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    <RelativeLayout
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/text"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="40dp">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:id="@+id/middle"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/kylläButton"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/middle"
+            android:backgroundTint="#3A3A3A"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingEnd="20dp"
+            android:text="Hyväksy"
+            android:textAllCaps="false"
+            android:textColor="#16AF19"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/enButton"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_toLeftOf="@+id/middle"
+            android:backgroundTint="#B8B7B7"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="Peruuta"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+
+            android:textSize="16sp" />
+    </RelativeLayout>
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
